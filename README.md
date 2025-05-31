@@ -1,8 +1,5 @@
 ## ROBLOX👋
 
-<!--
-**yunita52525/yunita52525** # Roblox
-
 Ini adalah proyek deploy file HTML ke GitHub Pages.
 
 ## Cara akses
